@@ -1,8 +1,13 @@
-# vscode-make README
+# Make: A VS Code extension for working with `make`
 
-This is the README for your extension "vscode-make". After writing up a brief description, we recommend including the following sections.
+Many programming languages, such as C and Go, still rely upon `Makefile`s to handle builds. This extension provides features to ease working with Make in VS Code.
 
 ## Features
+
+- Run any `Makefile` target with ease. Just run CMD-SHIFT-P and type `make`. You will be prompted for a target.
+- Don't remember all your `Makefile` targets? Run CMD-SHIFT-P `target` and you will be prompted with a list.
+
+
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
