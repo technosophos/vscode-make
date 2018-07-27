@@ -4,12 +4,21 @@
     "description": "Run Make easily",
     "version": "0.0.1",
     "publisher": "technosophos",
+    "license": "MIT",
     "engines": {
         "vscode": "^1.25.0"
     },
     "categories": [
         "Other"
     ],
+    "keywords": [
+        "make",
+        "makefile"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/technosophos/vscode-make.git"
+    },
     "activationEvents": [
         "onCommand:extension.runMake",
         "onCommand:extension.runMakeByTarget"
