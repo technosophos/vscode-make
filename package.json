@@ -2,9 +2,10 @@
     "name": "vscode-make",
     "displayName": "Make",
     "description": "Run Make easily",
-    "version": "0.0.1",
+    "version": "1.0.1",
     "publisher": "technosophos",
     "license": "MIT",
+    "icon": "images/icon.png",
     "engines": {
         "vscode": "^1.25.0"
     },

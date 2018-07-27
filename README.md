@@ -27,3 +27,11 @@ Many programming languages, such as C and Go, still rely upon `Makefile`s to han
 ### 1.0.0
 
 Initial release of `Make` extension.
+
+### 1.0.1
+
+Icon added
+
+## Notes
+
+Icon CC BY-NC-ND 2.5 https://www.iconfinder.com/icons/9109/advanced_makefile_options_settings_setup_text_icon
