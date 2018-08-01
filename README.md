@@ -22,8 +22,6 @@ Many programming languages, such as C and Go, still rely upon `Makefile`s to han
 
 ## Release Notes
 
-
-
 ### 1.0.0
 
 Initial release of `Make` extension.

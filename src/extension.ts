@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('extension.runMakeByTarget', runMakeByTarget)
     ];
 
-    subscriptions.forEach((sub) => {context.subscriptions.push(sub)});
+    subscriptions.forEach((sub) => {context.subscriptions.push(sub);});
 }
 
 // this method is called when your extension is deactivated
@@ -18,19 +18,18 @@ export function deactivate() {
 }
 
 // Prompt user to enter a target, then run that target.
-const runMake = () => {
-    vscode.window.showInputBox({
+async function runMake() {
+    const target = await vscode.window.showInputBox({
         prompt: "target"
-    }).then((target) => {
-        if (target === undefined) {
-            return
-        }
-
-        // If there are not targets, we want targets to be empty, not an array with an empty string.
-        let targets: string[] = [];
-        target.split(" ").forEach((t) => {targets.push(t)});
-        make(targets);
     });
+    if (target === undefined) {
+        return;
+    }
+
+    // If there are not targets, we want targets to be empty, not an array with an empty string.
+    let targets: string[] = [];
+    target.split(" ").forEach((t) => {targets.push(t)});
+    make(targets);
 }
 
 // Call make with a list of targets. An empty list runs the default.
@@ -54,14 +53,12 @@ function make(targets: string[]) {
 }
 
 // List the targets, and run the selected target
-function runMakeByTarget() {
-    let targets = findMakeTargets()
-    vscode.window.showQuickPick(targets).then((target) => {
-        if (target == undefined) {
-            return;
-        }
+async function runMakeByTarget() {
+    let targets = findMakeTargets();
+    const target = await vscode.window.showQuickPick(targets);
+    if (target !== undefined) {
         make([target]);
-    })
+    }
 }
 
 // Get a list of targets
