@@ -14,21 +14,26 @@ Many programming languages, such as C and Go, still rely upon `Makefile`s to han
 ## Requirements
 
 - A version of `make` that supports table printing with `-p`.
-- Currently, this is only tested on macOS, though it should work on Linux. Untested on Windows.
+- The `egrep` command (which is fairly standard)
+- Currently, this is only tested on macOS, though it should work on Linux. Untested on Windows WSL.
 
 ## Known Issues
 
-- Currently all of our issues are unknown. :smile:
+- None so far
 
 ## Release Notes
 
-### 1.0.0
+### 1.0.2
 
-Initial release of `Make` extension.
+Refactored to use async/await, and to clean up code.
 
 ### 1.0.1
 
 Icon added
+
+### 1.0.0
+
+Initial release of `Make` extension.
 
 ## Notes
 
