@@ -34,22 +34,29 @@ async function runMake() {
 
 // Call make with a list of targets. An empty list runs the default.
 function make(targets: string[]) {
+    let resultMessage = "make is done";
     let make = spawn('make', targets, {
         cwd: vscode.workspace.rootPath
     });
     make.on("close", (code) => {
         if (code > 0) {
-            vscode.window.showErrorMessage("make failed");
-            return;
+            resultMessage = "make failed";
+            vscode.window.showErrorMessage(resultMessage);
+        } else {
+            vscode.window.showInformationMessage(resultMessage);
         }
-        vscode.window.showInformationMessage("make is done");
     });
+
+    let channel = getOutputChannel();
     make.stdout.on("data", (data: string) => {
-        console.log(data.toString());
+        channel.appendLine(data.toString());
     });
     make.stderr.on("data", (data: string) => {
-        console.error(data.toString());
+        channel.appendLine(data.toString());
     });
+
+    channel.appendLine(resultMessage);
+    channel.show(true);
 }
 
 // List the targets, and run the selected target
@@ -67,4 +74,12 @@ function findMakeTargets(): string[] {
     const bashCompletion = `make -pRrq : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($1 !~ "^[#.]") {print $1}}' | egrep -v '^[^[:alnum:]]' | sort | xargs`;
     let res = execSync(bashCompletion, {cwd: vscode.workspace.rootPath});
     return res.toString().split(" ");
+}
+
+let _channel: vscode.OutputChannel;
+function getOutputChannel(): vscode.OutputChannel {
+	if (!_channel) {
+		_channel = vscode.window.createOutputChannel('Make');
+	}
+	return _channel;
 }
